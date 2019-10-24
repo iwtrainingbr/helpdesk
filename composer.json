@@ -1,0 +1,11 @@
+{
+  "author": "Alessandro Feitoza",
+  "require": {
+
+  },
+  "autoload": {
+    "psr-4": {
+      "Root\\": "src/"
+    }
+  }
+}
