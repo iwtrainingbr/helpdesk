@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Root\Controller;
 
+use Root\Adapter\Connection;
+use Root\Entity\Department;
 use Root\Validator\UserValidator;
 
 final class UserController extends AbstractController
@@ -21,7 +23,15 @@ final class UserController extends AbstractController
     public function addAction(): void
     {
       if (!$_POST) {
-          $this->render('user/add');
+          $entityManager = Connection::getEntityManager();
+
+          $departments = $entityManager
+                ->getRepository(Department::class)
+                ->findAll();
+
+          $this->render('user/add', [
+              'departments' => $departments,
+          ]);
           return;
       }
 

@@ -20,6 +20,11 @@
                   <label for="department">Setor/Departamento: </label>
                   <select class="form-control" name="department" id="department">
                     <option value=""> -- Selecione -- </option>
+                      <?php
+                        foreach ($this->data['departments'] as $department) {
+                            echo "<option>{$department->getName()}</option>";
+                        }
+                      ?>
                   </select>
                   <br>
 
