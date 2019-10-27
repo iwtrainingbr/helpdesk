@@ -7,8 +7,9 @@ namespace Root\Controller;
 abstract class AbstractController
 {
   private $view;
+  private $data;
 
-  public function render(string $filename): void
+  public function render(string $filename, array $data = []): void
   {
       $filename = "../src/View/{$filename}.phtml";
 
@@ -16,6 +17,7 @@ abstract class AbstractController
           die("Arquivo {$filename} não existe");
       }
 
+      $this->data = $data;
       $this->view = $filename;
 
       include_once '../src/View/template/logged.phtml';
