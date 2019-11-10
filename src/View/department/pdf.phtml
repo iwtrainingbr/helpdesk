@@ -1,0 +1,21 @@
+<?php
+
+$data = '';
+foreach ($departments as $department) {
+    $data .= "
+        <tr>
+            <td>{$department->getName()}</td>
+            <td>{$department->getDescription()}</td>
+        </tr>
+    ";
+}
+
+return "
+<table border='1'>
+<tr>
+<th>Nome</th>
+<th>Descrição</th>
+</tr>
+{$data}
+</table>
+";
