@@ -23,8 +23,13 @@ return [
   '/perfil' => createRoute(UserController::class, 'profile'),
   '/admin/usuarios' => createRoute(UserController::class, 'list'),
   '/admin/novo-usuario' => createRoute(UserController::class, 'add'),
+
   '/admin/departamentos' => createRoute(DepartmentController::class, 'list'),
+  '/admin/excluir-departamento' => createRoute(DepartmentController::class, 'remove'),
+  '/admin/editar-departamento' => createRoute(DepartmentController::class, 'edit'),
   '/admin/novo-departamento' => createRoute(DepartmentController::class, 'add'),
+  '/admin/departamentos/pdf' => createRoute(DepartmentController::class, 'pdf'),
+
   '/abrir-chamado' => createRoute(TicketController::class, 'add'),
   '/suporte/chamados' => createRoute(TicketController::class, 'list'),
 ];
