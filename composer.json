@@ -2,7 +2,8 @@
   "author": "Alessandro Feitoza",
   "require": {
     "doctrine/orm": "^2.6",
-    "dompdf/dompdf": "^0.8.3"
+    "dompdf/dompdf": "^0.8.3",
+    "ext-json": "*"
   },
   "autoload": {
     "psr-4": {

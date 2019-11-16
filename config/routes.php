@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Root\Controller\Api\DepartmentRestController;
 use Root\Controller\UserController;
 use Root\Controller\AdminController;
 use Root\Controller\IndexController;
@@ -32,4 +33,7 @@ return [
 
   '/abrir-chamado' => createRoute(TicketController::class, 'add'),
   '/suporte/chamados' => createRoute(TicketController::class, 'list'),
+
+
+  '/api/departamento' => createRoute(DepartmentRestController::class, 'get'),
 ];

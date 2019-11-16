@@ -14,90 +14,17 @@
             </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Nome do Fulano</td>
-            <td>fulano@email.com</td>
-            <td>TI</td>
-            <td>Suporte</td>
-            <td>09/09/2019 12:12:12</td>
-            <td>09/09/2019 12:12:12</td>
-            <td>
-              <a href="#" class="btn btn-sm btn-warning">Editar</a>
-              <a href="#" class="btn btn-sm btn-danger">Excluir</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Nome do Fulano</td>
-            <td>fulano@email.com</td>
-            <td>TI</td>
-            <td>Suporte</td>
-            <td>09/09/2019 12:12:12</td>
-            <td>09/09/2019 12:12:12</td>
-            <td>
-              <a href="#" class="btn btn-sm btn-warning">Editar</a>
-              <a href="#" class="btn btn-sm btn-danger">Excluir</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Nome do Fulano</td>
-            <td>fulano@email.com</td>
-            <td>TI</td>
-            <td>Suporte</td>
-            <td>09/09/2019 12:12:12</td>
-            <td>09/09/2019 12:12:12</td>
-            <td>
-              <a href="#" class="btn btn-sm btn-warning">Editar</a>
-              <a href="#" class="btn btn-sm btn-danger">Excluir</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Nome do Fulano</td>
-            <td>fulano@email.com</td>
-            <td>TI</td>
-            <td>Suporte</td>
-            <td>09/09/2019 12:12:12</td>
-            <td>09/09/2019 12:12:12</td>
-            <td>
-              <a href="#" class="btn btn-sm btn-warning">Editar</a>
-              <a href="#" class="btn btn-sm btn-danger">Excluir</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Nome do Fulano</td>
-            <td>fulano@email.com</td>
-            <td>TI</td>
-            <td>Suporte</td>
-            <td>09/09/2019 12:12:12</td>
-            <td>09/09/2019 12:12:12</td>
-            <td>
-              <a href="#" class="btn btn-sm btn-warning">Editar</a>
-              <a href="#" class="btn btn-sm btn-danger">Excluir</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Nome do Fulano</td>
-            <td>fulano@email.com</td>
-            <td>TI</td>
-            <td>Suporte</td>
-            <td>09/09/2019 12:12:12</td>
-            <td>09/09/2019 12:12:12</td>
-            <td>
-              <a href="#" class="btn btn-sm btn-warning">Editar</a>
-              <a href="#" class="btn btn-sm btn-danger">Excluir</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Nome do Fulano</td>
-            <td>fulano@email.com</td>
-            <td>TI</td>
-            <td>Suporte</td>
-            <td>09/09/2019 12:12:12</td>
-            <td>09/09/2019 12:12:12</td>
-            <td>
-              <a href="#" class="btn btn-sm btn-warning">Editar</a>
-              <a href="#" class="btn btn-sm btn-danger">Excluir</a>
-            </td>
-          </tr>
+        <?php
+        foreach ($this->data['users'] as $user) {
+            echo '<tr>';
+                echo "<td>{$user->getName()}</td>";
+                echo "<td>{$user->getEmail()}</td>";
+                echo "<td>{$user->getDepartment()->getName()}</td>";
+                echo "<td>{$user->getType()}</td>";
+                echo "<td>{$user->getRegisteredAt()->format('d/m/Y H:i:s')}</td>";
+            echo '</tr>';
+        }
+        ?>
         </tbody>
       </table>
     </div>

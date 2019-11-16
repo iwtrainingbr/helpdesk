@@ -22,53 +22,53 @@ class User
      * @Column(type="integer")
      * @GeneratedValue()
      */
-    private $id;
+    public $id;
 
     /**
      * @Column(type="string")
      */
-    private $type;
+    public $type;
 
     /**
      * @ManyToOne(targetEntity="Department")
      * @JoinColumn(referencedColumnName="id", name="department_id")
      */
-    private $department;
+    public $department;
 
     /**
      * @Column(type="string")
      */
-    private $name;
+    public $name;
 
     /**
      * @Column(type="string", unique=true)
      */
-    private $email;
+    public $email;
 
     /**
      * @Column(type="string")
      */
-    private $password;
+    public $password;
 
     /**
      * @Column(type="boolean")
      */
-    private $status;
+    public $status;
+
+    /**
+     * @Column(type="datetime", nullable=true)
+     */
+    public $last_login;
 
     /**
      * @Column(type="datetime")
      */
-    private $last_login;
+    public $registered_at;
 
     /**
-     * @Column(type="datetime")
+     * @Column(type="datetime", nullable=true)
      */
-    private $registered_at;
-
-    /**
-     * @Column(type="datetime")
-     */
-    private $updated_at;
+    public $updated_at;
 
   public function __construct(string $name, string $email, string $password)
   {
@@ -76,6 +76,7 @@ class User
       $this->email = $email;
       $this->password = $password;
       $this->status = true;
+      $this->registered_at = new \DateTime();
   }
 
     public function getId(): int
@@ -88,12 +89,12 @@ class User
         $this->id = $id;
     }
 
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
 
-    public function setType($type): void
+    public function setType(string $type): void
     {
         $this->type = $type;
     }

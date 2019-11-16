@@ -6,10 +6,23 @@ namespace Root\Controller;
 
 use Root\Adapter\Connection;
 use Root\Entity\Department;
+use Root\Entity\User;
 use Root\Validator\UserValidator;
 
 final class UserController extends AbstractController
 {
+    private $entityManager;
+    private $departmentRepository;
+    private $userRepository;
+
+    public function __construct()
+    {
+        $this->entityManager = Connection::getEntityManager();
+
+        $this->departmentRepository = $this->entityManager->getRepository(Department::class);
+        $this->userRepository = $this->entityManager->getRepository(User::class);
+    }
+
     public function profileAction(): void
     {
       $this->render('user/profile');
@@ -17,17 +30,17 @@ final class UserController extends AbstractController
 
     public function listAction(): void
     {
-      $this->render('user/list');
+        $users = $this->userRepository->findAll();
+
+        $this->render('user/list', [
+            'users' => $users,
+        ]);
     }
 
     public function addAction(): void
     {
       if (!$_POST) {
-          $entityManager = Connection::getEntityManager();
-
-          $departments = $entityManager
-                ->getRepository(Department::class)
-                ->findAll();
+          $departments = $this->departmentRepository->findAll();
 
           $this->render('user/add', [
               'departments' => $departments,
@@ -40,8 +53,19 @@ final class UserController extends AbstractController
           return;
       }
 
-      $user = new User($_POST['name'], $_POST['email'], $_POST['password']);
-      $user->setDepartment($_POST['department']);
+      $department = $this->departmentRepository->find($_POST['department']);
+
+      $password = password_hash($_POST['password'], PASSWORD_ARGON2I);
+
+      $user = new User($_POST['name'], $_POST['email'], $password);
+      $user->setDepartment($department);
       $user->setType($_POST['type']);
+
+      $this->entityManager->persist($user);
+      $this->entityManager->flush();
+
+      $_SESSION['success'] = ['Novo usuário criado'];
+
+      $this->listAction();
     }
 }

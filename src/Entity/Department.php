@@ -19,17 +19,17 @@ class Department
      * @Column(type="integer")
      * @GeneratedValue()
      */
-    private $id;
+    public $id;
 
     /**
      * @Column(type="string")
      */
-    private $name;
+    public $name;
 
     /**
      * @Column(type="string")
      */
-    private $description;
+    public $description;
 
     public function getId(): int
     {

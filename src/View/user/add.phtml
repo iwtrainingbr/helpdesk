@@ -13,7 +13,10 @@
               <form action="" method="post">
                   <label for="type">Tipo: </label>
                   <select class="form-control" name="type" id="type">
-                    <option value=""> -- Selecione -- </option>
+                      <option value=""> -- Selecione -- </option>
+                      <option value="Suporte">Suporte</option>
+                      <option value="Cliente">Cliente</option>
+                      <option value="Admin">Admin</option>
                   </select>
                   <br>
 
@@ -22,7 +25,7 @@
                     <option value=""> -- Selecione -- </option>
                       <?php
                         foreach ($this->data['departments'] as $department) {
-                            echo "<option>{$department->getName()}</option>";
+                            echo "<option value='{$department->getId()}'>{$department->getName()}</option>";
                         }
                       ?>
                   </select>

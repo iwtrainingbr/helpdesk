@@ -21,6 +21,11 @@ final class DepartmentController extends AbstractController
 
     public function listAction(): void
     {
+        $entityManager = Connection::getEntityManager();
+
+        $departments = $entityManager
+            ->getRepository(Department::class)
+            ->findAll();
         $departments = $this->repository->findAll();
 
         $this->render('department/list', [
@@ -97,3 +102,4 @@ final class DepartmentController extends AbstractController
         ]);
     }
 }
+
