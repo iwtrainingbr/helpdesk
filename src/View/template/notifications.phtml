@@ -1,0 +1,21 @@
+<div class="row mt-3">
+    <div class="col-md-4 offset-md-8">
+        <?php
+        if (isset($_SESSION['errors'])) {
+            foreach ($_SESSION['errors'] as $error) {
+                echo "<div class='alert alert-danger'>{$error}</div>";
+            }
+
+            unset($_SESSION['errors']);
+        }
+
+        if (isset($_SESSION['success'])) {
+            foreach ($_SESSION['success'] as $success) {
+                echo "<div class='alert alert-success'>{$success}</div>";
+            }
+
+            unset($_SESSION['success']);
+        }
+        ?>
+    </div>
+</div>

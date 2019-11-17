@@ -7,6 +7,8 @@ namespace Root\Controller;
 use Dompdf\Dompdf;
 use Root\Adapter\Connection;
 use Root\Entity\Department;
+use Root\Entity\User;
+use Root\Security\PermissionSecurity;
 
 final class DepartmentController extends AbstractController
 {
@@ -21,11 +23,8 @@ final class DepartmentController extends AbstractController
 
     public function listAction(): void
     {
-        $entityManager = Connection::getEntityManager();
+        PermissionSecurity::isAdmin();
 
-        $departments = $entityManager
-            ->getRepository(Department::class)
-            ->findAll();
         $departments = $this->repository->findAll();
 
         $this->render('department/list', [
@@ -35,6 +34,8 @@ final class DepartmentController extends AbstractController
 
     public function addAction(): void
     {
+        PermissionSecurity::isAdmin();
+
         if ($_POST) {
             $department = new Department();
             $department->setName($_POST['name']);
@@ -52,6 +53,8 @@ final class DepartmentController extends AbstractController
 
     public function removeAction(): void
     {
+        PermissionSecurity::isAdmin();
+
         $id = $_GET['id'];
 
         $department = $this->repository->find($id);
@@ -65,6 +68,8 @@ final class DepartmentController extends AbstractController
 
     public function editAction(): void
     {
+        PermissionSecurity::isAdmin();
+
         $id = $_GET['id'];
 
         $department = $this->repository->find($id);
@@ -88,6 +93,8 @@ final class DepartmentController extends AbstractController
 
     public function pdfAction(): void
     {
+        PermissionSecurity::isAdmin();
+
         $departments = $this->repository->findAll();
 
         $html = include_once '../src/View/department/pdf.phtml';

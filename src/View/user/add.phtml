@@ -14,9 +14,9 @@
                   <label for="type">Tipo: </label>
                   <select class="form-control" name="type" id="type">
                       <option value=""> -- Selecione -- </option>
-                      <option value="Suporte">Suporte</option>
-                      <option value="Cliente">Cliente</option>
-                      <option value="Admin">Admin</option>
+                      <option><?=\Root\Entity\User::TYPE_ADMIN ?></option>
+                      <option><?=\Root\Entity\User::TYPE_SUPPORT ?></option>
+                      <option><?=\Root\Entity\User::TYPE_CLIENT ?></option>
                   </select>
                   <br>
 

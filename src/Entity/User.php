@@ -17,6 +17,10 @@ use Doctrine\ORM\Mapping\JoinColumn;
  */
 class User
 {
+    public const TYPE_ADMIN = 'Admin';
+    public const TYPE_CLIENT = 'Cliente';
+    public const TYPE_SUPPORT = 'Suporte';
+
     /**
      * @Id()
      * @Column(type="integer")

@@ -34,6 +34,8 @@ return [
   '/abrir-chamado' => createRoute(TicketController::class, 'add'),
   '/suporte/chamados' => createRoute(TicketController::class, 'list'),
 
+  '/login' => createRoute(IndexController::class, 'login'),
+  '/sair' => createRoute(IndexController::class, 'logout'),
 
-  '/api/departamento' => createRoute(DepartmentRestController::class, 'get'),
+  '/api/departamento' => createRoute(DepartmentRestController::class, strtolower($_SERVER['REQUEST_METHOD'])),
 ];

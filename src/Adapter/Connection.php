@@ -12,10 +12,10 @@ class Connection
     public static function getEntityManager(): EntityManager
     {
         $params = [
-            'driver' => 'pdo_mysql',
-            'user' => 'alessandro',
-            'password' => 'livre',
-            'dbname' => 'iw_helpdesk',
+            'driver' => DATABASE_DRIVER,
+            'user' => DATABASE_USER,
+            'password' => DATABASE_PASSWORD,
+            'dbname' => DATABASE_NAME,
         ];
 
         $paths = [

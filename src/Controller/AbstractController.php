@@ -20,11 +20,18 @@ abstract class AbstractController
       $this->data = $data;
       $this->view = $filename;
 
-      include_once '../src/View/template/logged.phtml';
+      $template = 'blank';
+
+      if (isset($_SESSION['user'])) {
+          $template = 'logged';
+      }
+
+      include_once "../src/View/template/{$template}.phtml";
   }
 
   private function content(): void
   {
+      include_once '../src/View/template/notifications.phtml';
       include_once $this->view;
   }
 }

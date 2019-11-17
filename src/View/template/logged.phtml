@@ -22,6 +22,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="/perfil">Meu Perfil</a>
               </li>
+              <?php if ($_SESSION['user']->getType() === \Root\Entity\User::TYPE_ADMIN): ?>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="/admin/usuarios" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Usuários
@@ -40,37 +41,26 @@
                   <a class="dropdown-item" href="/admin/novo-departamento">Novo</a>
                 </div>
               </li>
+              <?php endif; ?>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="/chamados" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Chamados
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/chamados">Listar</a>
+                  <a class="dropdown-item" href="/novo-chamado">Novo</a>
+                </div>
+              </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <a href="/sair" class="btn btn-danger">Sair</a>
             </form>
           </div>
           </nav>
       </div>
     </div>
 
-    <div class="row mt-3">
-      <div class="col-md-4 offset-md-8">
-        <?php
-          if (isset($_SESSION['errors'])) {
-              foreach ($_SESSION['errors'] as $error) {
-                echo "<div class='alert alert-danger'>{$error}</div>";
-              }
-              
-              unset($_SESSION['errors']);
-          }
 
-        if (isset($_SESSION['success'])) {
-            foreach ($_SESSION['success'] as $success) {
-                echo "<div class='alert alert-success'>{$success}</div>";
-            }
-
-            unset($_SESSION['success']);
-        }
-        ?>
-      </div>
-    </div>
 
     <?php $this->content(); ?>
 

@@ -7,6 +7,7 @@ namespace Root\Controller;
 use Root\Adapter\Connection;
 use Root\Entity\Department;
 use Root\Entity\User;
+use Root\Security\PermissionSecurity;
 use Root\Validator\UserValidator;
 
 final class UserController extends AbstractController
@@ -25,11 +26,15 @@ final class UserController extends AbstractController
 
     public function profileAction(): void
     {
+      PermissionSecurity::isLogged();
+
       $this->render('user/profile');
     }
 
     public function listAction(): void
     {
+        PermissionSecurity::isAdmin();
+
         $users = $this->userRepository->findAll();
 
         $this->render('user/list', [
@@ -39,6 +44,8 @@ final class UserController extends AbstractController
 
     public function addAction(): void
     {
+      PermissionSecurity::isAdmin();
+
       if (!$_POST) {
           $departments = $this->departmentRepository->findAll();
 
